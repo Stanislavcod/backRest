@@ -3,6 +3,7 @@ const path = require('path')
 const {Meal} = require('../models/models')
 const ApiError = require('../error/ApiError')
 
+
 class MealController {
     async create(req, res, next) {
 
@@ -10,7 +11,7 @@ class MealController {
             const {name, price, description, typeId} = req.body
             const {img} = req.files
             let fileName = uuid.v4() + '.jpg'
-            img.mv(path.resolve(__dirname, '..', 'static', fileName))
+            img.mv(path.resolve(__dirname, '..', 'public/static', fileName))
 
             const meal = await Meal.create({name, price, typeId, description, img: fileName})
 
